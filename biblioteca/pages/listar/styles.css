@@ -1,0 +1,17 @@
+body {
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+
+    width: 100%;
+    height: 100vh;
+    padding-top: 15px;
+}
+
+.btnCad {
+    padding-top: 20px;
+}
+
+.col {
+    border: 1px solid;
+}
