@@ -21,12 +21,47 @@
                 <strong>Ano de publicação</strong>
             </div>
         </div>
+    </div>
 
-        <?php require 'processar_listar.php'; ?>
+    <?php 
+        require_once('../../service/conexao.php');
+
+        $stmt = $conn->prepare("SELECT * FROM Livro");
+
+        $stmt->execute();
+
+        $stmt->bind_result($id, $titulo, $autor, $ano);
+
+        while ($stmt->fetch()) {
+            echo '
+            <div class="container"> 
+                <div class="row">
+                    <div class="col">' .
+                        $titulo .
+                    '</div>
+                    <div class="col">' .
+                        $autor .
+                    '</div>
+                    <div class="col">' .
+                        $ano .
+                    '</div>
+                    <div class="col">
+                        <form action="processar_listar.php" method="POST" class="d-inline">
+                            <button type="submit" name="delete_livro" value="'.$id.'"class="btn-close" data-bs-dismiss="alert" aria-label="Close"><strong style="color:red;">Deletar</strong></button>  
+                        </form>
+                    <div>
+                </div>
+            </div>';
+        }
+
+        $stmt->close();
+        $conn->close();
+    ?>
 
         <div class="btnCad">
             <a class="btn btn-primary" href="../cadastrar/index.php" role="button">Cadastrar novo livro</a>
         </div>
-    </div>
+
+        <?php include('../cadastrar/mensagem.php') ?>
     </body>
 </html>

@@ -1,31 +1,27 @@
 <?php
-    function listar() {
-        require_once('../../service/conexao.php');
+    if(isset($_POST['delete_livro']))
+    {
+        session_start();
+        require '../../service/conexao.php';
 
-        $stmt = $conn->prepare("SELECT * FROM Livro");
+        $id = $_POST['delete_livro'];
 
-        $stmt->execute();
+        $produto_id = mysqli_real_escape_string($conn, $id);
 
-        $stmt->bind_result($id, $titulo, $autor, $ano);
+        $query = "DELETE FROM Livro WHERE id='$id' ";
+        $query_run = mysqli_query($conn, $query);
 
-        while ($stmt->fetch()) {
-            echo ' 
-                <div class="row">
-                    <div class="col">' .
-                        $titulo .
-                    '</div>
-                    <div class="col">' .
-                        $autor .
-                    '</div>
-                    <div class="col">' .
-                        $ano .
-                    '</div>
-                </div>';
+        if($query_run)
+        {
+            $_SESSION['m'] = "Produto Deletado!";
+            header("Location: index.php");
+            exit(0);
         }
-
-        $stmt->close();
-        $conn->close();
+        else
+        {
+            $_SESSION['m'] = "Produto não deletado!";
+            header("Location: index.php");
+            exit(0);
+        }
     }
-
-    listar()
 ?>

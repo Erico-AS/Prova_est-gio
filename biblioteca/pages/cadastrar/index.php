@@ -27,8 +27,8 @@
 
             <div class="mb-3">
                 <label>Ano de publicação</label>
-                <input type="number" name="ano" class="form-control" 
-                pattern="\d{4}" title="Informe exatamente 4 caracteres numéricos."
+                <input type="text" maxlength="4" name="ano" class="form-control" 
+                oninput="this.value = this.value.replace(/[^0-9]/g, '');"
                 required>
             </div>
 
