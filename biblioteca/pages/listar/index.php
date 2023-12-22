@@ -47,7 +47,7 @@
                     '</div>
                     <div class="col">
                         <form action="processar_listar.php" method="POST" class="d-inline">
-                            <button type="submit" name="delete_livro" value="'.$id.'"class="btn-close" data-bs-dismiss="alert" aria-label="Close"><strong style="color:red;">Deletar</strong></button>  
+                            <button type="submit" name="delete_livro" value="'.$id.'"class="btn-close" data-bs-dismiss="alert" aria-label="Close"><strong style="color: red; padding-left: 25px;">Deletar</strong></button>  
                         </form>
                     <div>
                 </div>
